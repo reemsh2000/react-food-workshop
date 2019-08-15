@@ -12,9 +12,11 @@ import React from "react";
 //   "extra",
 // ];
 
-function App() {
-  return (
-    <main>
+class App extends React.Component {
+  render() {
+
+    return (
+      <main>
       <section className="filters">
         <h1>Burger Place</h1>
         <h2>Filters</h2>
@@ -28,6 +30,7 @@ function App() {
       </section>
     </main>
   );
+}
 }
 
 export default App;

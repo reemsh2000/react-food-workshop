@@ -3,11 +3,23 @@ import CategoryFilter from "./components/CategoryFilter";
 import PriceFilter from "./components/PriceFilter";
 import DishList from "./components/DishList";
 
-function App() {
-  const [catFilter, setCatFilter] = React.useState("all");
-  const [priceFilter, setPriceFilter] = React.useState([0.5, 9]);
-  return (
-    <main>
+class App extends React.Component {
+  state = {
+    catFilter: "all", 
+    priceFilter:[0.5,9]
+  }
+
+  setCatFilter = (val)=> {
+    this.setState({catFilter: val})
+  }
+  setPriceFilter = (arr) => {
+    this.setState({priceFilter: arr})
+
+  }
+  render(){
+
+    return (
+      <main>
       <section className="filters">
         <h1>Burger Place</h1>
         <h2>Filters</h2>
@@ -15,7 +27,7 @@ function App() {
           <PriceFilter
             priceFilter={priceFilter}
             setPriceFilter={setPriceFilter}
-          />
+            />
           <CategoryFilter catFilter={catFilter} setCatFilter={setCatFilter} />
         </form>
       </section>
@@ -25,6 +37,7 @@ function App() {
       </section>
     </main>
   );
+}
 }
 
 export default App;
