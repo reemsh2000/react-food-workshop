@@ -1,6 +1,6 @@
 import React from "react";
 
-function PriceFilter({ priceFilter, setPriceFilter }) {
+const PriceFilter= ({ priceFilter, setPriceFilter }) =>{
   return (
     <fieldset>
       <legend>Price</legend>

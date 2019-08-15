@@ -11,7 +11,7 @@ const categories = [
   "extra",
 ];
 
-function CategoryFilter({ catFilter, setCatFilter }) {
+const CategoryFilter =({ catFilter, setCatFilter }) =>{
   return (
     <fieldset>
       <legend>Category</legend>

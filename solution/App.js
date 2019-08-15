@@ -17,6 +17,7 @@ class App extends React.Component {
 
   }
   render(){
+    const {priceFilter, catFilter} = this.state
 
     return (
       <main>
@@ -26,9 +27,9 @@ class App extends React.Component {
         <form>
           <PriceFilter
             priceFilter={priceFilter}
-            setPriceFilter={setPriceFilter}
+            setPriceFilter={this.setPriceFilter}
             />
-          <CategoryFilter catFilter={catFilter} setCatFilter={setCatFilter} />
+          <CategoryFilter catFilter={catFilter} setCatFilter={this.setCatFilter} />
         </form>
       </section>
       <section className="dishes">

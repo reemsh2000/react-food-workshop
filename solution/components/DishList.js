@@ -1,7 +1,7 @@
 import React from "react";
 import dishes from "../data";
 
-function DishList({ catFilter, priceFilter }) {
+const DishList = ({ catFilter, priceFilter }) =>{
   const [minPrice, maxPrice] = priceFilter;
   const dishItems = dishes
     .filter(dish => catFilter === "all" || catFilter === dish.category)
@@ -14,7 +14,7 @@ function DishList({ catFilter, priceFilter }) {
       </li>
     ));
 
-  console.log(dishItems);
+
   return (
     <ul className="grid">
       {dishItems.length ? (
