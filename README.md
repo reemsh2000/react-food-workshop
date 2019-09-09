@@ -79,7 +79,7 @@ Take a look at what data you have available for each dish and try to render it a
 
 We want to be able to filter the list of dishes by minimum and maximum price. To do this we'll need to create two [range inputs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range). Create some state to represent the range values.
 
-You can refer back to the [introduction to controlled components](https://github.com/oliverjam/learn-react/blob/master/05-transform-the-form/README.md#controlled-components) if you need to.
+You can refer back to the [introduction to controlled components](https://github.com/ali-7/react-forms) if you need to.
 
 It can be a good idea to group and label related elements using the [fieldset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) element.
 
@@ -142,5 +142,5 @@ If everything is hooked up correctly you should see something like the gif from 
 ## Stretch goals
 
 1. It would be nice if the price filters were constrained by the lowest/highest available price on the page (so you don't end up filtering everything away)
-1. Add a text input that lets users search for dishes by title
-1. Make it look even better 💅
+2. Add a text input that lets users search for dishes by title
+3. Make it look even better 💅
