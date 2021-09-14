@@ -1,33 +1,34 @@
-import React from "react";
-import Filter from "./Filter";
-
-// const categories = [
-//   "all",
-//   "burger",
-//   "hot dog",
-//   "sandwich",
-//   "fries",
-//   "topping",
-//   "drink",
-//   "extra",
-// ];
+import React from 'react'
+import RangeInput from './Components/RangeInput'
+import CategoryList from './Components/CategoryList'
+import dishes from './data'
+import Card from './Components/Card'
 
 class App extends React.Component {
   state = {
     minPrice: 0,
     maxPrice: 10,
-    category: "all",
-  };
+    SelectedCategory: 'all',
+  }
 
   getPrice = (e) => {
-    e.target.id === "min_input"
+    e.target.id === 'min_input'
       ? this.setState({ minPrice: e.target.value })
-      : this.setState({ maxPrice: e.target.value });
-  };
+      : this.setState({ maxPrice: e.target.value })
+  }
 
   getCategory = (e) => {
-    this.setState({ category: e.target.value });
-  };
+    this.setState({ SelectedCategory: e.target.value })
+  }
+  Filter() {
+    let { maxPrice, minPrice, SelectedCategory } = this.state
+    return dishes.filter(
+      ({ price, category }) =>
+        price >= minPrice &&
+        price <= maxPrice &&
+        (SelectedCategory === category || SelectedCategory === 'all'),
+    )
+  }
 
   render() {
     return (
@@ -36,124 +37,15 @@ class App extends React.Component {
           <h1>Burger Place</h1>
           <h2>Filters</h2>
           <form>
-            <div className="bowl_price">
-              <fieldset>
-                <legend>price</legend>
-                <div className="range_input">
-                  <label htmlFor="min_input">Min prive</label>
-                  <input
-                    type="range"
-                    onChange={this.getPrice}
-                    value={this.state.minPrice}
-                    min="0"
-                    max="10"
-                    name=""
-                    id="min_input"
-                    step='0.25'
-                  />
-                </div>
-                <div className="range_input">
-                  <label htmlFor="max_input">Max prive</label>
-                  <input
-                    type="range"
-                    onChange={this.getPrice}
-                    value={this.state.maxPrice}
-                    min="0"
-                    max="10"
-                    name=""
-                    id="max_input"
-                    step='0.25'
-                  />
-                </div>
-              </fieldset>
-            </div>
-
-            <div className="bowl_category">
-              <fieldset>
-                <legend>Category</legend>
-                <div className="sellect_option">
-                  <label htmlFor="all">all</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    defaultChecked={this.state.category === "all"}
-                    onClick={this.getCategory}
-                    value="all"
-                    id="all"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="burger">burger</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="burger"
-                    id="burger"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="hot_dog">hot dog</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="hot dog"
-                    id="hot_dog"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="sandwich">sandwich</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="sandwich"
-                    id="sandwich"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="fries">fries</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="fries"
-                    id="fries"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="topping">topping</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="topping"
-                    id="topping"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="drink">drink</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="drink"
-                    id="drink"
-                  />
-                </div>
-                <div className="sellect_option">
-                  <label htmlFor="extra">extra</label>
-                  <input
-                    type="radio"
-                    name="category"
-                    onClick={this.getCategory}
-                    value="extra"
-                    id="extra"
-                  />
-                </div>
-              </fieldset>
-            </div>
+            <RangeInput
+              maxPrice={this.state.maxPrice}
+              minPrice={this.state.minPrice}
+              getPrice={this.getPrice}
+            />
+            <CategoryList
+              chosencategory={this.state.SelectedCategory}
+              getCategory={this.getCategory}
+            />
           </form>
         </section>
 
@@ -161,12 +53,22 @@ class App extends React.Component {
         <section className="dishes">
           <h2>Dishes</h2>
           <ul className="grid">
-            <Filter query={this.state} />
+            {this.Filter().map(({ id, name, price, category, description }) => {
+              return (
+                <Card
+                  key={id}
+                  name={name}
+                  price={price}
+                  category={category}
+                  description={description}
+                />
+              )
+            })}
           </ul>
         </section>
       </main>
-    );
+    )
   }
 }
 
-export default App;
+export default App
