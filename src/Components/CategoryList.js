@@ -10,7 +10,9 @@ const categories = [
   "extra",
 ];
 function CategoryList(props) {
+  
   const {getCategory,chosencategory}=props
+
   return (
     <div className="bowl_category">
       <fieldset>
