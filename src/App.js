@@ -49,6 +49,7 @@ class App extends React.Component {
                     max="10"
                     name=""
                     id="min_input"
+                    step='0.25'
                   />
                 </div>
                 <div className="range_input">
@@ -61,6 +62,7 @@ class App extends React.Component {
                     max="10"
                     name=""
                     id="max_input"
+                    step='0.25'
                   />
                 </div>
               </fieldset>
